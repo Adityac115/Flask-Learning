@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <form class="form1" action="http://localhost:5000/score" method="post">
+    <form action="{{ url_for('score') }}" method="post">
         Enter Score: <br>
         Phy: <input type="number" name="phy" /><br>
         Chem: <input type="number" name="chem" /><br>
