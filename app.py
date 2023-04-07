@@ -6,7 +6,7 @@ app= Flask(__name__)
 def index():
     return render_template('login.html')
 
-@app.route('/score/',methods=['POST'])
+@app.route('/scores/',methods=['POST'])
 def score():
     # Phy=request.form['phy']
     # Chem=request.form['chem']
