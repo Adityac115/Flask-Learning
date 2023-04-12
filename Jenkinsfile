@@ -4,9 +4,10 @@ pipeline{
     }
 stages{
     stage('Build'){
-        sh ''' building ...
-          python3 --version'''
-
+        steps{
+            sh ''' building ...
+            python3 --version'''
+        }
     }
 }
 
