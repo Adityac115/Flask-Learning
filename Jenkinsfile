@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh 'docker build -t $(BUILD_NUMBER) .'
+                sh 'docker build -t myapp .'
         }
         }
         stage('Testing'){
