@@ -25,7 +25,7 @@ pipeline{
 
                     sh 'echo Login to dockerhub.... '
                     sh 'echo $DOCKER_CREDENTIALS_PWD '
-                    sh 'docker push flask-app:${IMAGE_TAG} '
+                    sh 'sudo docker push flask-app:${IMAGE_TAG} '
                     }
             }
         }
