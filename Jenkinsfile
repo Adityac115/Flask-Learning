@@ -22,7 +22,7 @@ pipeline{
             steps{
                 script{
                     sh 'echo Login to dockerhub.... '
-                    sh 'docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PWD'
+                    sh 'echo $DOCKER_CREDENTIALS_PWD'
                     sh 'docker push flask-app:${IMAGE_TAG} '
             }
         }
