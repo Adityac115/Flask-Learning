@@ -4,12 +4,13 @@ pipeline{
         // args '--user root -v /var/run/docker.sock:/var/run/docker.sock' }
     environment{
         IMAGE_TAG="$BUILD_NUMBER"
+        DOCKER_CREDENTIALS=credentials("Aditya-dockerhub")
     }
     stages{
         stage('Build'){
             steps{
                 sh' echo Building Docker image'
-                sh 'docker build -t myapp:${BUILD_NUMBER} .'
+                sh 'docker build -t flask-app:${IMAGE_TAG} .'
         }
         }
         stage('Testing'){
@@ -18,17 +19,11 @@ pipeline{
             }
         }
         stage('Push to Dockerhub'){
-            environment{
-                DOCKER_IMAGE="myapp:${BUILD_NUMBER}"
-                REGISTRY_CREDENTIALS="credentials(dockerhub-credential)"}
             steps{
                 script{
-                    sh'echo "Build Docker image" '
-                    def dockerImage=docker.image("${DOCKER_IMAGE}")
-                    docker.withRegistry('https://index.docker.io/v1/', "dockerhub-credential") {
-                    dockerImage.push()
-                }
-
+                    sh 'echo Login to dockerhub.... '
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --pasword-stdin'
+                    sh 'docker push flask-app:${IMAGE_TAG} '
             }
         }
             
