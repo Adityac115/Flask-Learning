@@ -21,9 +21,12 @@ pipeline{
         stage('Push to Dockerhub'){
             steps{
                 script{
+                    withDockerRegistry(credentialsId: 'Aditya-dockerhub') {
+
                     sh 'echo Login to dockerhub.... '
-                    sh 'echo $DOCKER_CREDENTIALS_PWD'
+                    sh 'echo $DOCKER_CREDENTIALS_PWD '
                     sh 'docker push flask-app:${IMAGE_TAG} '
+                    }
             }
         }
             
