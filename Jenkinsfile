@@ -18,9 +18,16 @@ pipeline{
             }
         }
         stage('Push to Dockerhub'){
+            environment{
+                DOCKER_IMAGE="myapp:${BUILD_NUMBER}"
+                REGISTRY_CREDENTIALS="credentials(jenkins-docker)"
             steps{
-                sh'echo "Build Docker image" '
-                sh 'docker push myapp:${BUILD_NUMBER} '
+                script{
+                    sh'echo "Build Docker image" '
+                    def dockerImage=docker.image("${DOCKER_IMAGE}")
+                    docker.withRegistry('https://index.docker.io/v1/', "jenkins-docker") {
+                    dockerImage.push()
+                }
 
             }
         }
