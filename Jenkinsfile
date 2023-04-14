@@ -20,7 +20,7 @@ pipeline{
         stage('Push to Dockerhub'){
             steps{
                 sh'echo "Build Docker image" '
-                sh 'docker push aditya115/myapp:${BUILD_NUMBER} '
+                sh 'docker push myapp:${BUILD_NUMBER} '
 
             }
         }
