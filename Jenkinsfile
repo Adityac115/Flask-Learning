@@ -10,7 +10,7 @@ pipeline{
         stage('Build'){
             steps{
                 sh' echo Building Docker image'
-                sh 'docker build -t flask-app:${IMAGE_TAG} .'
+                sh 'docker build -t aditya115/flask-app:${IMAGE_TAG} .'
         }
         }
         stage('Testing'){
@@ -25,7 +25,7 @@ pipeline{
 
                     sh 'echo Login to dockerhub.... '
                     sh 'echo $DOCKER_CREDENTIALS_PWD '
-                    sh 'sudo docker push flask-app:${IMAGE_TAG} '
+                    sh 'sudo docker push aditya115/flask-app:${IMAGE_TAG} '
                     }
             }
         }
