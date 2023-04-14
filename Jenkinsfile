@@ -5,13 +5,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh 'echo Building...'
-            }
-        }
-        stage('Release'){
-            steps{
-                sh 'echo Release...'
-            }
+                sh 'docker build -t $(BUILD_NUMBER) .'
         }
         stage('Testing'){
             steps{
