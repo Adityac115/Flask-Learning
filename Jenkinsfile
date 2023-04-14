@@ -7,6 +7,7 @@ pipeline{
             steps{
                 sh 'docker build -t $(BUILD_NUMBER) .'
         }
+        }
         stage('Testing'){
             steps{
                 sh 'echo Testing...'
@@ -17,6 +18,6 @@ pipeline{
                 sh 'echo Deploying...'
             }
         }   
-    }
+    
 }
 }
