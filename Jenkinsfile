@@ -18,7 +18,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh 'echo Deploying...'
-                sh 'docker-compose up -d --scale flask-app=10 --build'
+                sh 'docker-compose up -d --build'
             }
         }   
     
