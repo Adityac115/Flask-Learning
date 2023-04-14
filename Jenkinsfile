@@ -20,7 +20,7 @@ pipeline{
         stage('Push to Dockerhub'){
             environment{
                 DOCKER_IMAGE="myapp:${BUILD_NUMBER}"
-                REGISTRY_CREDENTIALS="credentials(jenkins-docker)"
+                REGISTRY_CREDENTIALS="credentials(jenkins-docker)"}
             steps{
                 script{
                     sh'echo "Build Docker image" '
@@ -31,7 +31,7 @@ pipeline{
 
             }
         }
-            }
+            
         }
         stage('Deploy'){
             steps{
