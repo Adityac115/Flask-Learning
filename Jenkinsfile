@@ -6,6 +6,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
+                sh' echo Building Docker image'
                 sh 'docker build -t myapp .'
         }
         }
@@ -17,6 +18,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh 'echo Deploying...'
+                sh 'docker-compose up'
             }
         }   
     
