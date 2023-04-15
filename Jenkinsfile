@@ -24,7 +24,7 @@ pipeline{
                     withDockerRegistry(credentialsId: 'Aditya-dockerhub') {
 
                     sh 'echo Login to dockerhub.... '
-                    sh 'docker push aditya115/flask-app:${IMAGE_TAG} '
+                    sh '    docker push aditya115/flask-app:${IMAGE_TAG} '
                     }
             }
         }
