@@ -7,6 +7,12 @@ pipeline{
         DOCKER_CREDENTIALS=credentials("Aditya-dockerhub")
     }
     stages{
+        stage('clean workspace'){
+            steps{
+                sh 'echo Cleaning the Workspace Before Building '
+                sh 'docker system prune -a'
+            }
+        }
         stage('Build'){
             steps{
                 sh' echo Building Docker image'
@@ -33,7 +39,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh 'echo Deploying...'
-                sh 'docker-compose up -d --build --scale flask-app=2'
+                sh 'docker-compose up -d --build --scale flask-app=1'
             }
         }   
     
