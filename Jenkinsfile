@@ -37,21 +37,10 @@ pipeline{
         }
             
         }
-        stage('SSH into deploy environment'){
-            steps{
-                sh ' echo SSH into deploy environment... '
-                sh ' ssh -i "deploy-key.pem" ubuntu@ec2-13-235-68-154.ap-south-1.compute.amazonaws.com  '
-                sh 'ls -a'
-
-            }
-
-
-        }
         stage('Deploy'){
             steps{
                 sh 'echo Deploying...'
-                // sh 'docker-compose up -d --build '
-                // '--scale flask-app=1'
+                sh 'docker-compose up -d --build --scale flask-app=2'
             }
         }   
     
