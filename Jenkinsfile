@@ -31,16 +31,26 @@ pipeline{
                     withDockerRegistry(credentialsId: 'Aditya-dockerhub') {
 
                     sh 'echo Login to dockerhub.... '
-                    sh '    docker push aditya115/flask-app:${IMAGE_TAG} '
+                    sh ' docker push aditya115/flask-app:${IMAGE_TAG} '
                     }
             }
         }
             
         }
+        stage('SSH into deploy environment'){
+            steps{
+                sh ' echo SSH into deploy environment... '
+                sh ' ssh -i "deploy-key.pem" ubuntu@ec2-13-235-68-154.ap-south-1.compute.amazonaws.com  '
+                sh 'ls -a'
+
+            }
+
+
+        }
         stage('Deploy'){
             steps{
                 sh 'echo Deploying...'
-                sh 'docker-compose up -d --build '
+                // sh 'docker-compose up -d --build '
                 // '--scale flask-app=1'
             }
         }   
