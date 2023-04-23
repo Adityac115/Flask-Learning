@@ -10,7 +10,7 @@ pipeline{
         stage('clean workspace'){
             steps{
                 sh 'echo Cleaning the Workspace Before Building '
-                sh 'docker-compose down'
+                // sh 'docker-compose down'
                 // sh 'docker system prune -a -f '
             }
         }
