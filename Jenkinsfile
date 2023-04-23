@@ -16,9 +16,7 @@ pipeline{
         }
         stage('SCM'){
             steps{
-                sh ' cd ~'
-                sh ' pwd '
-                sh ' git clone https://github.com/Adityac115/Flask-Learning.git '
+                sh 'cd ~ && git clone https://github.com/Adityac115/Flask-Learning.git '
             }
         }
         stage('Build'){
