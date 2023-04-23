@@ -14,6 +14,11 @@ pipeline{
                 // sh 'docker system prune -a -f '
             }
         }
+        stage('SCM'){
+            steps{
+                sh ' git clone https://github.com/Adityac115/Flask-Learning.git '
+            }
+        }
         stage('Build'){
             steps{
                 sh' echo Building Docker image'
