@@ -27,5 +27,9 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/app:latest
 
-      # - name: Deploy using Docker Compose
-      #   run: docker-compose up -d
+      # - name: SSH into EC2 instance
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: your-ec2-instance-ip
+      #     username: your-ec2-instance-username
+          
