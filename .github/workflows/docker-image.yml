@@ -2,8 +2,7 @@ name: Docker Compose
 
 on:
   push:
-    branches:
-      - master
+    branches: [" master" ]
 
 jobs:
   build_and_deploy:
@@ -21,12 +20,12 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+      - name: Build and push
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: aditya115/my-app:$(date +%s)
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/app:latest
 
-      - name: Deploy using Docker Compose
-        run: docker-compose up -d
+      # - name: Deploy using Docker Compose
+      #   run: docker-compose up -d
