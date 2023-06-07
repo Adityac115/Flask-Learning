@@ -35,5 +35,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: Message
-        run: ls -la 
+        run: ls -al
 
