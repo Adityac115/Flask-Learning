@@ -27,9 +27,13 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/app:latest
 
-      # - name: SSH into EC2 instance
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: your-ec2-instance-ip
-      #     username: your-ec2-instance-username
-          
+      - name: SSH into EC2 instance
+        uses: appleboy/ssh-action@master
+        with:
+          host: your-ec2-instance-ip
+          username: your-ec2-instance-username
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Message
+        run: ls -la 
+
