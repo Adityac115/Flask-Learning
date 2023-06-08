@@ -37,6 +37,5 @@ jobs:
       - name: Deploy on EC2
         run: |
           pwd
-          ls -al
           # rsync -e ssh /docker-compose.yaml 43.205.206.120@/home/ubuntu/cicd 
            
