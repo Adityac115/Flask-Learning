@@ -33,11 +33,8 @@ jobs:
           host: 43.205.206.120
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: ls -al
-      - name: Deploy on EC2
-        run: |
-          pwd
-          ${{ secrets.SSH_PRIVATE_KEY }} >> key_file
-          cat key_file
-          # scp -i ${{ secrets.SSH_PRIVATE_KEY }} /home/runner/work/Flask-Learning/Flask-Learning/docker-compose.yaml ubuntu@43.205.206.120:/home/ubuntu/cicd 
+          script: |
+              ls -al 
+    
+        
            
