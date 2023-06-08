@@ -37,6 +37,5 @@ jobs:
       - name: Deploy on EC2
         run: |
           pwd
-          ls ~/.ssh/
           scp -i ${{ secrets.SSH_PRIVATE_KEY }} /home/runner/work/Flask-Learning/Flask-Learning/docker-compose.yaml ubuntu@43.205.206.120:/home/ubuntu/cicd 
            
