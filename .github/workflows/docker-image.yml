@@ -37,5 +37,6 @@ jobs:
       - name: Deploy on EC2
         run: |
           pwd
-          rsync -e ssh  /home/runner/work/Flask-Learning/Flask-Learning/docker-compose.yaml 43.205.206.120@/home/ubuntu/cicd 
+          ls ~/.ssh/
+          # scp -i ~/.ssh/id_rsa /home/runner/work/Flask-Learning/Flask-Learning/docker-compose.yaml 43.205.206.120@/home/ubuntu/cicd 
            
