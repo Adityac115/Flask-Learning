@@ -33,6 +33,7 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: SSH into EC2 instance
         uses: appleboy/ssh-action@master
