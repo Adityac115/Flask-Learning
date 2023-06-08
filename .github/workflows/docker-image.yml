@@ -30,9 +30,10 @@ jobs:
       - name: SSH into EC2 instance
         uses: appleboy/ssh-action@master
         with:
-          host: 13.127.220.238
+          host: 43.205.206.120
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: echo " hello world!"
       
       - name: Message
         run: ls -al
