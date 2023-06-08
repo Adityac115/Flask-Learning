@@ -33,8 +33,8 @@ jobs:
           host: 43.205.206.120
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: echo " hello world!"
-      
-      - name: Message
-        run: ls -al
-
+          script: ls -al
+      # - name: Deploy on EC2
+      #   run: |
+      #     sudo docker compose down 
+           
