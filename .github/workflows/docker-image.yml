@@ -34,7 +34,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-              ls -al 
+              git clone https://github.com/Adityac115/Flask-Learning.git && cd Flask-Learning
+              sudo docker-compose down down
+              sudo docker-compose up -d --build 
     
         
            
