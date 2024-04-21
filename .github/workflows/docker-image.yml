@@ -38,6 +38,7 @@ jobs:
         run: |
           docker build -t backend:${{ github.sha }} .
           docker save backend:${{ github.sha }} > backend:${{ github.sha }}.tar.gz
+          docker images
           gzip -d backend:${{ github.sha }}.tar.gz
 
       - name: Deploy to GCE VM
