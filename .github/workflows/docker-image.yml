@@ -39,7 +39,7 @@ jobs:
           docker build -t backend:${{ github.sha }} .
           docker save backend:${{ github.sha }} | gzip > backend_${{ github.sha }}.tar.gz
           docker images && ls
-          # scp -i ${{ secrets.GCE_PRIVATE_KEY }} backend:${{ github.sha }}.tar ${{ secrets.GCE_USERNAME }}@${{ secrets.GCE_HOST }}:/home/${{ secrets.GCE_USERNAME }} 
+          #scp -i ${{ secrets.GCE_PRIVATE_KEY }} backend:${{ github.sha }}.tar ${{ secrets.GCE_USERNAME }}@${{ secrets.GCE_HOST }}:/home/${{ secrets.GCE_USERNAME }} 
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
