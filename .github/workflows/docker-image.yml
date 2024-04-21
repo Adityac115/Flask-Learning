@@ -27,25 +27,40 @@ jobs:
           images: ${{ secrets.DOCKER_HUB_USERNAME }}/app
   
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      # - name: Build and push
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     labels: ${{ steps.meta.outputs.labels }}
+      - name: Build Docker image
+        run: |
+          docker build -t backend:${{ github.sha }} .
+          docker save backend:${{ github.sha }} > backend:${{ github.sha }}.tar.gz
+          gzip -d backend:${{ github.sha }}.tar.gz
 
-      - name: SSH into EC2 instance
+      - name: Deploy to GCE VM
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST}}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.GCE_HOST }}
+          username: ${{ secrets.GCE_USERNAME }}
+          key: ${{ secrets.GCE_PRIVATE_KEY }}
           script: |
-              # git clone https://github.com/Adityac115/Flask-Learning.git 
-              cd Flask-Learning
-              sudo docker-compose down 
-              sudo docker-compose up -d --build 
+            scp -i /tmp/ssh_key  backend:${{ github.sha }}.tar ${{ username }}@${{ host }}:/home/${{ username }}
+            ssh -i /tmp/ssh_key ${{ username }}@${{ host }} "docker load -i backend:${{ github.sha }}.tar && docker run -d --name hello -p 5000:5000 backend:${{ github.sha }}"
+
+      # - name: SSH into EC2 instance
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST}}
+      #     username: ${{ secrets.USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #         # git clone https://github.com/Adityac115/Flask-Learning.git 
+      #         cd Flask-Learning
+      #         sudo docker-compose down 
+      #         sudo docker-compose up -d --build 
     
         
            
