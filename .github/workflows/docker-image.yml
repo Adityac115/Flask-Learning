@@ -37,7 +37,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t backend:${{ github.sha }} .
-          docker save backend:${{ github.sha }} | gzip backend_${{ github.sha }}.tar.gz
+          docker save backend:${{ github.sha }} | gzip > backend_${{ github.sha }}.tar.gz
           docker images && ls
           
 
